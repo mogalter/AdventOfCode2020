@@ -25,13 +25,12 @@ def find_seats():
 			elif step =='L':
 				cols_end = get_mid(cols_start, cols_end)
 		row = min(rows_start, rows_end)
-		col= max(cols_start, cols_end)
+		col = max(cols_start, cols_end)
 		# add seat ID to records
 		boarded.append(row*8+col)
 	# start search for my seat, first sort to make finding consecs easier!
 	boarded = sorted(boarded)
 	seat_index = 1
-	print(boarded)
 	while seat_index < len(boarded):
 		prev_seat = boarded[seat_index-1]
 		cur_seat = boarded[seat_index]
@@ -40,6 +39,7 @@ def find_seats():
 			print("The current seat on the pass is", cur_seat)
 			return get_mid(cur_seat, prev_seat)
 		seat_index += 1
+	
 
 print("My seat ID is:", find_seats())
 
