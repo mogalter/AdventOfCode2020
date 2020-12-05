@@ -20,14 +20,14 @@ def check_fields(fields):
 		print("PID:", pid, "is not the required length of 9. Detected len:", len(pid))
 		return False
 	elif ecl not in {'amb', 'blu', 'brn',  'gry', 'grn', 'hzl', 'oth'}:
-		print("ECL:", ecl, "is invalid")
+		print("ECL:", ecl, "is invalid because it is not a recognized color")
 		return False
 	if hgt_denom in {'cm', 'in'}:
 		if hgt_denom == 'cm' and not (150 <= hgt <= 193):
 			print("HGY in cm", hgt, "is not valid")
 			return False
 		elif hgt_denom == 'in' and not (59 <= hgt <= 76):
-			print("HGY in in", hgt, "is not valid")
+			print("HGY in inches", hgt, "is not valid")
 			return False
 	else:
 		return False
