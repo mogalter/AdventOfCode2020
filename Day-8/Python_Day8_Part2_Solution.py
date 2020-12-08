@@ -28,15 +28,15 @@ def test_game():
 	flippables = { "nop" : "jmp",
 				 "jmp" : "nop"
 				}
-	for index, instruction in instructions:
+	for index, instruction in enumerate(instructions):
 		cmd, ops = instruction.split(" ")
 		# we know we only need to flip if its a cmd/jmp
 		# no point in flipping ops since it'll cause an infinite loop...
 		if cmd in flippables  and ops != 0:
-			instructions[index] = flippables [cmd] + " " + ops
+			instructions[index] = flippables[cmd] + " " + ops
 			ends, acc = exec_game(instructions, 0, 0, set())
 			if ends:
-				print("Flipped", instruction, "at index", index, "to end game.")
+				print("Flipped", instruction, "at index", index, "to successfully end game.")
 				return acc
 			# reset it
 			instructions[index] = cmd + " " + ops
