@@ -14,6 +14,7 @@ def load_rules():
 				num, color = bag.strip().split(" ", 1)
 				bags_inside[index] = ( color[:color.index('bag')].strip(), int(num))
 		bag_rules[main_bag] = bags_inside
+	rules_input.close()
 	return bag_rules
 
 def count_bags(cur_color, rules, seen):
@@ -25,7 +26,7 @@ def count_bags(cur_color, rules, seen):
 		seen[color_only] = 0
 		for color in rules[color_only]:
 			computed = (color_count * count_bags(color, rules, seen))
-			print("Computed" ,color[0], "in", color_only, "-", computed)
+			print("Computed" ,color[0], "in", color_only, "-", computed, "bags.")
 			seen[color_only] += computed
 			print(color_only, "currently has", seen[color_only], "bags in it.")
 		# factor in the original bag(s)
@@ -38,6 +39,7 @@ def find_bags_in_target(target):
 	count = 0
 	print("Search:", bag_rules[target])
 	for color in bag_rules[target]:
+		print(target, "bag has", color[1], color[0], "bags in it.")
 		count += count_bags(color, bag_rules, seen)
 	return count
 
