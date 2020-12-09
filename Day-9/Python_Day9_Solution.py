@@ -18,7 +18,6 @@ def find_weakness(container, target):
 	# brute force approach
 	for index, val in enumerate(container):
 		total = 0
-		minimum = maximum= container[index]
 		while index < len(container):
 			minimum = min(minimum, container[index])
 			maximum = max(maximum, container[index])
@@ -32,17 +31,13 @@ def find_weakness(container, target):
 
 def parse_xmas(preamble_len=5):
 	nums = load_input("puzzle.txt")
-	index = 0
+	index = preamble_len
 	while index < len(nums): 
 		# we want to search index -> index + preamble_len and find index + preamble len
-		if preamble_len > len(nums)-index:
-			# if theres less indexes left to check than preamble
-			target = len(nums)-1
-		else:
-			target = index + preamble_len
-		if not contains_sum(nums[index:target], nums[target]):
-			print(nums[target], "is not the sum of the previous", preamble_len, "numbers.")
-			weakness = find_weakness(nums, nums[target])
+		start = index - preamble_len
+		if not contains_sum(nums[start:index], nums[index]):
+			print(nums[index], "is not the sum of the previous", preamble_len, "numbers.")
+			weakness = find_weakness(nums, nums[index])
 			print("Found a weakness of", weakness)
 			return weakness
 		index += 1
