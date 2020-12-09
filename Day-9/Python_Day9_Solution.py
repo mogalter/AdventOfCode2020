@@ -1,3 +1,4 @@
+
 def load_input(filename):
 	xmas_input = open(filename, "r")
 	nums = [int(num.strip()) for num in xmas_input]
@@ -18,6 +19,7 @@ def find_weakness(container, target):
 	# brute force approach
 	for index, val in enumerate(container):
 		total = 0
+		minimum = maximum= container[index]
 		while index < len(container):
 			minimum = min(minimum, container[index])
 			maximum = max(maximum, container[index])
@@ -41,7 +43,6 @@ def parse_xmas(preamble_len=5):
 			print("Found a weakness of", weakness)
 			return weakness
 		index += 1
-
 	return float('-inf')
 
 if __name__ == "__main__":
