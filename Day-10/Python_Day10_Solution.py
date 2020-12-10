@@ -8,7 +8,7 @@ def load_jolts(filename):
 	return nums
 
 def search_adaptor(adaptors, max_jolts):
-	three_diff = one_diff = 0
+	three_diff, one_diff = 1, 0
 	cur_jolts = 0
 	while cur_jolts < max_jolts:
 		for potential_jolts in range(cur_jolts+1, cur_jolts+4):
@@ -20,10 +20,7 @@ def search_adaptor(adaptors, max_jolts):
 					one_diff += 1
 				cur_jolts = potential_jolts
 				break 
-	three_diff += 1
 	# this is +1 on 3 diff to account for the built-in adaptor
-	print("We found", one_diff, "adaptors with a difference of 1-jolt and", 
-		three_diff, "adaptors with a difference of 3-jolt")
 	return one_diff*three_diff
 
 def search_combinations(adaptors, cur_jolts, max_jolts, seen):
