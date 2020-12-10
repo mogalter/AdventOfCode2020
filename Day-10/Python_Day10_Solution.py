@@ -1,9 +1,8 @@
-
-# max adaptor jolts is what we want to build towards
+from collections import defaultdict# max adaptor jolts is what we want to build towards
 
 def load_jolts(filename):
 	jolts = open(filename, "r")
-	nums = [int(num) for num in jolts]
+	nums = set([int(num) for num in jolts])
 	return nums
 
 def search_adaptor(adaptors, max_jolts):
@@ -48,8 +47,9 @@ def search_combinations(adaptors, cur_jolts, max_jolts, seen):
 	 # get it in numerical order!
 
 if __name__ == "__main__":
+	# cast to set for quicker access
 	adaptors = load_jolts('jolts.txt')
 	max_jolts = max(adaptors)
 	print("Computed Answer for Part 1:", search_adaptor(adaptors, max_jolts))
-	print("Computed Answer for good combinations for Part 2:", search_combinations(adaptors, 0, max_jolts, {}))
+	print("Computed number of good combinations for Part 2:", search_combinations(adaptors, 0, max_jolts, {}))
 	pass
