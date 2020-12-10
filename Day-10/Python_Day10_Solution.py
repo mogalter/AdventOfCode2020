@@ -1,4 +1,4 @@
-from collections import defaultdict# max adaptor jolts is what we want to build towards
+# max adaptor jolts is what we want to build towards
 
 def load_jolts(filename):
 	jolts = open(filename, "r")
