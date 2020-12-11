@@ -26,7 +26,6 @@ def find_adj_seats(seating_placements, cur_seat_row, cur_seat_col):
 				# don't want an inf loop, break
 				break
 			cur_seat = seating_placements[row][col]
-			# print(cur_seat, row, col)
 			if cur_seat != ".":
 				if cur_seat == "#":
 					# hey look, it's an available seat!
@@ -50,8 +49,8 @@ def do_shuffle(seating_placements):
 			cur_seat = seating_placements[row][col]
 			if cur_seat == "#":
 				occupied += 1
-			occupied_seats = find_adj_seats(seating_placements, row, col)
-			if seat != "." and is_flippable(occupied_seats, cur_seat):
+			adj_seats = find_adj_seats(seating_placements, row, col)
+			if seat != "." and is_flippable(adj_seats, cur_seat):
 				to_flip.append((row,col))
 
 	for coord in to_flip:
