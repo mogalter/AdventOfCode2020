@@ -1,22 +1,20 @@
 from Python_Day11_Solution_Part1 import load_seats
 
-def is_flippable(occupied_seats, cur_seat):
-	# Also, people seem to be more tolerant than you expected: 
-	# it now takes five or more visible occupied seats for an occupied seat to become empty 
-	occupied_all_seats = occupied_seats.count('#')
+def is_flippable(adj_seats, cur_seat):
+	occupied_adj_seats = len(adj_seats)
 	# check for adjacent seats
-	# if there are 4 or more adjacent seats, empty it
-	if occupied_all_seats >= 5 and cur_seat == "#":
+	# if there are 5 or more adjacent seats, empty it
+	if occupied_adj_seats >= 5 and cur_seat == "#":
 		return True
 	# if there are no adj seats, flip!
-	elif occupied_all_seats == 0 and cur_seat == "L":
+	elif occupied_adj_seats == 0 and cur_seat == "L":
 		return True
 	# if all cases fail, we will not flip.
 	return False
 
 # instead of adjacent seat, we want to search until we find a seat
-def find_occupied_seats(seating_placements, cur_seat_row, cur_seat_col):
-	occupied_seats = []
+def find_adj_seats(seating_placements, cur_seat_row, cur_seat_col):
+	adj_seats = []
 	row_len = len(seating_placements)
 	col_len = len(seating_placements[cur_seat_row])
 	adj_adjustments = [(row_adj, col_adj) for row_adj in [-1, 0, 1] for col_adj in [-1, 0, 1]]
@@ -30,12 +28,13 @@ def find_occupied_seats(seating_placements, cur_seat_row, cur_seat_col):
 			cur_seat = seating_placements[row][col]
 			# print(cur_seat, row, col)
 			if cur_seat != ".":
-				# hey look, it's an available seat!
-				occupied_seats.append(cur_seat)
+				if cur_seat == "#":
+					# hey look, it's an available seat!
+					adj_seats.append(cur_seat)
 				break
 			row += row_adj
 			col += col_adj
-	return occupied_seats
+	return adj_seats
 
 def do_shuffle(seating_placements):
 	to_flip = []
@@ -51,7 +50,7 @@ def do_shuffle(seating_placements):
 			cur_seat = seating_placements[row][col]
 			if cur_seat == "#":
 				occupied += 1
-			occupied_seats = find_occupied_seats(seating_placements, row, col)
+			occupied_seats = find_adj_seats(seating_placements, row, col)
 			if seat != "." and is_flippable(occupied_seats, cur_seat):
 				to_flip.append((row,col))
 
