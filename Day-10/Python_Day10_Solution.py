@@ -50,4 +50,4 @@ if __name__ == "__main__":
 	adaptors = load_jolts('jolts.txt')
 	max_jolts = max(adaptors)
 	print("Computed Answer for Part 1:", search_adaptor(adaptors, max_jolts))
-	print("Computed number of good combinations for Part 2:", search_combinations(adaptors, 0, max_jolts, {}))
+	print("Computed Number of good combinations for Part 2:", search_combinations(adaptors, 0, max_jolts, {}))
