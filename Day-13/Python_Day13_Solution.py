@@ -17,8 +17,9 @@ def get_earliest_bus(depart_time, buses):
 	return min_time * min_bus
 
 # Brute Force
-# def get_subsequent_departures(buses):
-# 	counter, base_bus = 7*(100000000000000//7+1), int(buses[0])
+# def get_subsequent_departures(buses, start_time):
+#	base_bus = 7*(100000000000000//7+1)
+# 	counter = int(buses[0])
 # 	continue_loop, has_answer = True, True
 # 	while continue_loop:
 # 		counter += base_bus
@@ -44,11 +45,11 @@ def get_subsequent_departures(buses, start_time):
 			bus = int(bus)
 			while (base_time  + offset) % bus != 0:
 				base_time += lcm
+				# increment the base time by the least common multiple
 			lcm *= bus
+			# multiplying the lcm by bus ensures that the lcm will always be divisible by all seen buses so far...
 	return base_time
 
 if __name__ == "__main__":
-	print("Executing...")
 	depart_time, buses = load_bus_times("inputs.txt")
-	# part_one_answer = get_earliest_bus(depart_time, buses[:2])
 	print(get_subsequent_departures(buses, 100000000000000))
