@@ -18,8 +18,8 @@ def get_earliest_bus(depart_time, buses):
 
 # Brute Force
 # def get_subsequent_departures(buses, start_time):
-#	base_bus = 7*(100000000000000//7+1)
-# 	counter = int(buses[0])
+#	counter = int(buses[0])
+#	base_bus = counter*(100000000000000//counter+1)
 # 	continue_loop, has_answer = True, True
 # 	while continue_loop:
 # 		counter += base_bus
