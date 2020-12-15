@@ -20,7 +20,7 @@ def mask_num(mask, num):
 			num_bin_idx += 1
 		else:
 			new_num.append(bit)
-	# converts binary string to integer.
+	# returns the generated binary string
 	return new_num
 
 # recursive function generates all possible "X" replacements!
