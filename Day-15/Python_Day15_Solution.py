@@ -19,16 +19,15 @@ def chant_numbers(prev_num: int, chanted: dict, limit: int):
 			last_announced = chanted[next_to_chant]
 			chanted[next_to_chant] = turn
 			next_to_chant = turn - last_announced
-
 		else:
 			chanted[next_to_chant] = turn
 			next_to_chant= 0
 		turn += 1
-	print(next_to_chant)
+	return next_to_chant
 
 if __name__ == "__main__":
 	prev_num, init_nums = load_init_nums("sample.txt")
 	limit = 30000000
-	print(prev_num, init_nums)
-	chant_numbers(prev_num, init_nums, limit)
+	last_to_chant = chant_numbers(prev_num, init_nums, limit)
+	print("The last number to chant is", last_to_chant)
 
