@@ -70,14 +70,6 @@ def unfold_via_cycle(on_cubes, displacements, cycles):
 		on_cubes = keep_on
 	return len(on_cubes)
 
-def initOn(init, dimensions):
-    on = set()
-    for i, row in enumerate(init):
-        for j, val in enumerate(row):
-            if val == '#':
-                on.add(tuple([i, j] + [0] * (dimensions-2)))
-    return on
-
 if __name__ == "__main__":
 	init_cubes = load_cubes("input.txt")
 	# part 1. we will keep a track of all cubes that stay on.
